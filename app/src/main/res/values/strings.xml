@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Customer_Sign_Up</string>
+    <string name="state">State</string>
+    <string name="city">City</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email">Email</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
+    <string name="submit">Submit</string>
+    <string name="view_customers">View Customers</string>
+    <string name="export">Export</string>
+</resources>
