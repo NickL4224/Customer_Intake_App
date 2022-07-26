@@ -3,6 +3,7 @@ package me.nickligocki.customer_sign_up;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -77,31 +78,7 @@ public class MainActivity extends AppCompatActivity {
         viewCustomersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Cursor cursor = db.getAllCustomers();
-                if (cursor.getCount() == 0) {
-                    Toast.makeText(MainActivity.this, "No entries exist yet", Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                StringBuilder builder = new StringBuilder();
-                while (cursor.moveToNext()) {
-                    builder.append("Customer ID: ").append(cursor.getString(0)).append("\n");
-                    builder.append("First Name: ").append(cursor.getString(1)).append("\n");
-                    builder.append("Last Name: ").append(cursor.getString(2)).append("\n");
-                    builder.append("Email: ").append(cursor.getString(3)).append("\n");
-                    builder.append("Phone Number: ").append(cursor.getString(4)).append("\n");
-                    builder.append("City: ").append(cursor.getString(5)).append("\n");
-                    builder.append("State: ").append(cursor.getString(6)).append("\n");
-                    builder.append("-----------------------------\n\n");
-                }
-
-                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-                alert.setCancelable(true);
-                alert.setTitle("Customer List");
-                alert.setMessage(builder.toString());
-                alert.show();
-
-
+                startActivity(new Intent(getApplicationContext(), ViewCustomers.class));
             }
         });
 
@@ -114,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
                 List<Customer> customers = new ArrayList<>();
                 while (cursor.moveToNext()) {
-                    Customer c = new Customer(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
+                    Customer c = new Customer(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
                     customers.add(c);
                 }
 
@@ -145,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             Iterator<Customer> i = data.iterator();
             while (i.hasNext()) {
                 Customer c = (Customer) i.next();
-                file.append(c.getId());
+                file.append((char) c.getId());
                 file.append(DELIMITER);
                 file.append(c.getFirstName());
                 file.append(DELIMITER);

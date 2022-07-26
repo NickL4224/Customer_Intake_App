@@ -4,11 +4,10 @@ import java.util.Objects;
 
 public class Customer {
 
-    private String id, firstName, lastName, email, phone, city, state;
+    private String firstName, lastName, email, phone, city, state;
+    private int id;
 
-
-    public Customer(String id, String firstName, String lastName, String email, String phone, String city, String state) {
-        this.id = IdMaker.makeId().toString();
+    public Customer(int id, String firstName, String lastName, String email, String phone, String city, String state) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -17,7 +16,7 @@ public class Customer {
         this.state = state;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
